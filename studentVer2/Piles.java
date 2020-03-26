@@ -1,11 +1,13 @@
 import java.util.ArrayList;
 import java.util.Random;
+import java.util.*;
 /**
  * A class that plays Bulgarian Solitare.
  * Version 3: Complete the isDone method.
 */
 public class Piles
 {
+   
    /**
       Checks whether the game is done.
       @return true when the piles have size
@@ -21,8 +23,14 @@ public class Piles
          avoid a situation like  1 1 3 4 5 6 7 8 10  which means we
          still aren't done.
       */
-      . . .
 
+     Collections.sort(piles); //sorts arraylist
+      if (piles.size()==9){ //checks to see if arraylist has 9 piles
+            if (piles.get(0)==1 && piles.get(1)==2 && piles.get(2)==3 && piles.get(3)==4 && piles.get(4)==5 && piles.get(5)==6 && piles.get(6)==7 && piles.get(7)==8 && piles.get(8)==9)
+                //checks that piles follow order
+                return true;
+    }
+      return false;
 
 
    }
@@ -49,12 +57,12 @@ public class Piles
 
    /**
       Set up a pile with a known (non-random) configuration for testing.
-      @param pileSizes an array of numbers whose sum is 45
+      @param piless an array of numbers whose sum is 45
    */
-   public Piles(int[] pileSizes)
+   public Piles(int[] piless)
    {
       piles = new ArrayList<>();
-      for (int s : pileSizes)
+      for (int s : piless)
          piles.add(s);
    }
 
@@ -72,6 +80,17 @@ public class Piles
    */
    public void playRound()
    {
-	   // insert your code for ver 1
+           piles.add(0); //adds an empty pile each round, which will be added to
+      for (int i=0; i<piles.size(); i++)
+      {
+          if (piles.get(i)==1){ //removes list if it is equal to 1, and sets i appropriately
+            piles.remove(i);
+            i=i-1;}
+          else if (piles.get(i)>1) //sets the pile to one less than original
+            piles.set(i, piles.get(i)-1);
+          //each pile adds 1 to last pile
+          piles.set(piles.size()-1, piles.get(piles.size()-1)+1);
+   }
+   System.out.println(piles);
    }
 }
