@@ -25,7 +25,7 @@ public class Piles
     */
    public String toString()
    {
-      . . .
+      return "";
    }
 
    /**
@@ -33,6 +33,17 @@ public class Piles
    */
    public void playRound()
    {
-      . . .
+      piles.add(0);
+      for (int i=0; i<piles.size(); i++)
+      {
+          if (piles.get(i)==1){
+            piles.remove(i);
+            i=i-1;}
+          else if (piles.get(i)>1)
+            piles.set(i, piles.get(i)-1);
+            
+          piles.set(piles.size()-1, piles.get(piles.size()-1)+1);
    }
+   System.out.println(piles);
+}
 }
